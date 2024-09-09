@@ -6,7 +6,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod",
+    "build": "ng build --configuration production",  // Aquí se cambió --prod por --configuration production
     "watch": "ng build --watch --configuration development",
     "lint": "ng lint"
   },
