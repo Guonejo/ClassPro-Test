@@ -9,7 +9,6 @@
     "build": "ng build --prod",
     "watch": "ng build --watch --configuration development",
     "lint": "ng lint"
-    // La línea "test" se ha eliminado completamente
   },
   "private": true,
   "dependencies": {
