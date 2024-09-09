@@ -1,0 +1,47 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <!-- Flecha para volver al Home -->
+    <ion-buttons slot="start">
+      <ion-button (click)="goToHome()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon> <!-- Ícono de flecha -->
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Actividades</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Actividades</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- Lista de actividades, ordenadas por fecha -->
+  <ion-list>
+    <ion-item *ngFor="let activity of activities">
+      <ion-label [ngClass]="{ 'completed': activity.completed }" [style.color]="activity.color">
+        <h2>{{ activity.title }}</h2>
+        <p>{{ activity.date | date: 'short' }}</p>
+      </ion-label>
+      <ion-checkbox slot="start" [(ngModel)]="activity.completed" (ionChange)="saveActivities()"></ion-checkbox>
+      <ion-button fill="clear" color="danger" slot="end" (click)="deleteActivity(activity)">
+        <ion-icon name="trash"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <!-- Campo para agregar nuevas actividades -->
+  <ion-item>
+    <ion-input [(ngModel)]="newActivityTitle" placeholder="Nueva actividad"></ion-input>
+    <ion-button expand="block" (click)="addActivity()">Agregar</ion-button>
+  </ion-item>
+</ion-content>
+
+<!-- Estilo para las actividades completadas -->
+<style>
+  .completed {
+    text-decoration: line-through;
+    color: gray;
+  }
+</style>

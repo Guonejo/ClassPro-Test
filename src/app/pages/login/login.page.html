@@ -1,0 +1,29 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Inicio de Sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="login-content">
+  <div class="login-container">
+    <ion-card>
+      <ion-card-header>
+        <img alt="Login" src="https://i.pinimg.com/736x/84/56/01/845601fee752cf517e5b86fac9f8a736.jpg" class="login-logo"/>
+        <ion-card-title>Bienvenido</ion-card-title>      
+        <p class="login-subtitle">Por favor, inicia sesión para continuar</p>
+      </ion-card-header>
+  
+      <ion-card-content>
+        <ion-item>
+          <ion-icon name="person-outline" slot="start"></ion-icon>
+          <ion-input label="Usuario" labelPlacement="floating" [(ngModel)]="login.usuario" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+          <ion-input label="Contraseña" labelPlacement="floating" type="password" [(ngModel)]="login.password" ></ion-input>
+        </ion-item>
+        <ion-button expand="block" (click)="ingresar()">Iniciar Sesión</ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

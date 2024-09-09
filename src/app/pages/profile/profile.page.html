@@ -1,0 +1,62 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <!-- Botón de volver -->
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Perfil</ion-title>
+
+    <!-- Botón de guardar -->
+    <ion-buttons slot="end">
+      <ion-button (click)="saveProfile()">
+        <ion-icon slot="icon-only" name="save"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding profile-content">
+  <!-- Contenedor de la imagen de perfil con un fondo degradado -->
+  <div class="profile-header">
+    <div class="profile-image-container">
+      <img src="https://i.pinimg.com/736x/84/56/01/845601fee752cf517e5b86fac9f8a736.jpg" alt="Imagen de perfil" class="profile-image"/>
+    </div>
+    <h2>{{ profile.nombre || "Tu nombre" }}</h2>
+  </div>
+
+  <!-- Formulario de edición de perfil -->
+  <form class="profile-form">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input [(ngModel)]="profile.nombre" name="nombre" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Apellido</ion-label>
+        <ion-input [(ngModel)]="profile.apellido" name="apellido" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Edad</ion-label>
+        <ion-input type="number" [(ngModel)]="profile.edad" name="edad" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Género</ion-label>
+        <ion-select [(ngModel)]="profile.genero" name="genero" required>
+          <ion-select-option value="masculino">Masculino</ion-select-option>
+          <ion-select-option value="femenino">Femenino</ion-select-option>
+          <ion-select-option value="otro">Otro</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Carrera</ion-label>
+        <ion-input [(ngModel)]="profile.carrera" name="carrera" required></ion-input>
+      </ion-item>
+    </ion-list>
+  </form>
+</ion-content>
