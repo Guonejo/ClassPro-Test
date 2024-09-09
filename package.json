@@ -8,8 +8,8 @@
     "start": "ng serve",
     "build": "ng build --prod",
     "watch": "ng build --watch --configuration development",
-    "test": "echo \"Skipping tests during deployment\" && exit 0",  // Desactiva las pruebas
     "lint": "ng lint"
+    // La línea "test" se ha eliminado completamente
   },
   "private": true,
   "dependencies": {
