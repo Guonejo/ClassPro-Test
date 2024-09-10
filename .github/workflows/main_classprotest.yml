@@ -11,26 +11,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout code
       - uses: actions/checkout@v4
 
-      # 2. Setup Node.js 20.x
       - name: Set up Node.js version
         uses: actions/setup-node@v3
         with:
-          node-version: '20.x'  # Especifica Node.js 20.x
+          node-version: '20.x'
 
-      # 3. Install dependencies and build
-      - name: Install dependencies and build
+      - name: npm install and build
         run: |
           npm install
           npm run build --if-present
 
-      # 4. Zip the build artifacts
       - name: Zip artifact for deployment
         run: zip release.zip ./* -r
 
-      # 5. Upload the artifact for the deployment job
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
@@ -44,20 +39,17 @@ jobs:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
-      id-token: write  # Requiere el token de acceso
+      id-token: write
 
     steps:
-      # 1. Download the build artifact
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
           name: node-app
 
-      # 2. Unzip the artifact for deployment
       - name: Unzip artifact for deployment
         run: unzip release.zip
-
-      # 3. Login to Azure
+      
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -65,7 +57,6 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_EC1412F1284D4C24BD691D2B7BB0B51F }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_AD54420DEA274984BCA8249696C351AA }}
 
-      # 4. Deploy the app to Azure Web App
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
